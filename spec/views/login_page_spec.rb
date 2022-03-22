@@ -43,7 +43,7 @@ RSpec.describe 'User Validation', type: :system do
       expect(page).to have_field('Password', with: '123456')
       click_button('Log in')
       sleep(2)
-      expect(page).to have_current_path(foods_path)
+      expect(page).to have_current_path(recipes_path)
       sleep(2)
     end
   end
