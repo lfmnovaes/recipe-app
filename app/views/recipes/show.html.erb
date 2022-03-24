@@ -20,7 +20,7 @@
         <td><%= rf.food.name %></td>
         <td><%= rf.quantity %> <%= rf.food.measurement_unit %></td>
         <td>$ <%= (rf.food.price * rf.quantity).round(2) %></td>
-        <% if can? :manage, rf.food %>
+        <% if can? :edit, rf.food %>
           <td class="flex btn-manage">
             <%= button_to "Modify", edit_recipe_food_path(rf), method: :get %>
             <%= button_to "Remove", rf, {
@@ -69,7 +69,7 @@
     <span>Edit this recipe |</span>
   <% end %>
   <%= link_to "Back to recipes", recipes_path %>
-  <% if can? :edit, @recipe %>
+  <% if can? :delete, @recipe %>
     <%= button_to "Destroy this recipe", @recipe, method: :delete %>
   <% else %>
     <%= button_to "Destroy this recipe", @recipe, { :method => :delete, :disabled => true } %>
