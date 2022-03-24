@@ -39,19 +39,23 @@
     <% end %>
     <tr>
       <td>
-        <% if @current_food_options.empty? %>
-          <span id="food-fb">No food available to add</span>
+        <% if can? :edit, @recipe %>
+          <% if @current_food_options.empty? %>
+            <span id="food-fb">No food available to add</span>
+          <% else %>
+            <span id="food-fb">There is food available to add</span>
+          <% end %>
         <% else %>
-          <span id="food-fb">There is food available to add</span>
+          <span id="food-fb">Not authorized to edit/delete</span>
         <% end %>
       </td>
       <td></td>
       <td></td>
       <td>
-        <% if @current_food_options.empty? %>
-          <%= button_to "Add new ingredient", new_recipe_food_path, { :id => "btn-add-food", :method => :get, :disabled => true } %>
-        <% else %>
+        <% if (can? :edit, @recipe) && (!@current_food_options.empty?) %>
           <%= button_to "Add new ingredient", new_recipe_food_path, { :id => "btn-add-food", :method => :get } %>
+        <% else %>
+          <%= button_to "Add new ingredient", new_recipe_food_path, { :id => "btn-add-food", :method => :get, :disabled => true } %>
         <% end %>
       </td>
     </tr>
@@ -59,7 +63,15 @@
 </table>
 
 <div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+  <% if can? :edit, @recipe %>
+    <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+  <% else %>
+    <span>Edit this recipe |</span>
+  <% end %>
   <%= link_to "Back to recipes", recipes_path %>
-  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+  <% if can? :edit, @recipe %>
+    <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+  <% else %>
+    <%= button_to "Destroy this recipe", @recipe, { :method => :delete, :disabled => true } %>
+  <% end %>
 </div>
