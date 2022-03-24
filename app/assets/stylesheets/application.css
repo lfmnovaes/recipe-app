@@ -12,16 +12,20 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
 
-.flex {
-  display: flex;
+body > header {
+  padding: 0 0.5rem !important;
 }
 
 nav {
   padding: 0 0 !important;
   justify-content: space-between;
   align-items: center;
+}
+
+.flex {
+  display: flex;
 }
 
 .menu-container {
