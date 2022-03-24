@@ -1,6 +1,10 @@
 <div id="<%= dom_id recipe %>">
   <h2>
-    <%= recipe.name %>
+    <% if recipe.user_id == current_user.id %>
+      <%= recipe.name %>
+    <% else %>
+      <%= recipe.name %> by <%= recipe.user.name %>
+    <% end %>
   </h2>
 
   <% unless current_page?(:controller => 'recipes', :action => 'index') || current_page?(:controller => 'recipes', :action => 'new') %>
