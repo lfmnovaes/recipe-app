@@ -2,11 +2,14 @@
 
 > A Recipe List Application that allows user registration, creates recipes with already created (and available) foods and shows a customized shopping list based on necessary but unavailable food from the recipe.
 
+## Preview
+![Preview of Recipe App](./preview.webp)
+
 ## Built With
 
 Ruby >= 3.0.0
 
-Rails >= 7.0.0
+Ruby on Rails >= 7.0.0
 
 Postgresql >= 12.0
 
